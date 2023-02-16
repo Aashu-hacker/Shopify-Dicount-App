@@ -5,6 +5,8 @@ import {
   } from '@shopify/polaris-icons';
 
 import {SITE_ADMIN_EMAIL} from "../config.js"
+
+
 function BannerExample() {
   return (
     <Banner
