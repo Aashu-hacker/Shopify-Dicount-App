@@ -6,6 +6,7 @@ import {
   Thumbnail,
 } from '@shopify/polaris';
 import React from 'react';
+import SupportBanner from './SupportBanner';
 
 const Support = () => {
   const questions = [
@@ -123,6 +124,9 @@ const Support = () => {
               )
             })}
           </Card>
+          <div className='row mt-1'>
+          <SupportBanner/>
+          </div>
         </Layout.Section>
       </Layout>
     </Page>

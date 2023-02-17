@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@shopify/app": "3.43.0",
-    "@shopify/cli": "3.43.0"
+    "@shopify/cli": "3.43.0",
+    "reactour": "^1.19.0",
+    "styled-components": "^4.4.1"
   },
   "author": "vowelweb"
 }

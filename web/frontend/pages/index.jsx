@@ -13,6 +13,8 @@ import CardInfo from '../components/CardInfo';
 import CardTable from '../components/CardTable';
 import FooterLogo from '../components/FooterLogo';
 import Support from '../components/Support';
+import Setting from '../components/Setting';
+import Rule from '../components/Rule';
 const index = () => {
   return (
     <>
@@ -20,10 +22,12 @@ const index = () => {
       <Page>
         <Layout>
           <Layout.Section>
-            <BannerExample/>
+            {/* <BannerExample/>
             <CardInfo/>
-            <CardTable/>
+            <CardTable/> */}
              {/* <Support/> */}
+             <Setting/>
+             {/* <Rule/> */}
             <FooterLogo/>
           </Layout.Section>
         </Layout>

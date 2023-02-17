@@ -3,7 +3,7 @@ import React from 'react'
 const FooterLogo = () => {
   return (
     <div className='row mt-3'>
-      <div className='col-2 mx-auto text-center border border-danger rounded-pill p-3'>
+      <div className='col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-6 mx-auto text-center border border-danger rounded-pill p-3'>
         <p><span className='text-info me-1'>Active Cart 
         </span>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-c-circle" viewBox="0 0 16 16">
