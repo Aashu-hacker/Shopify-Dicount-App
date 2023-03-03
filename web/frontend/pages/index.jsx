@@ -15,10 +15,14 @@ import FooterLogo from '../components/FooterLogo';
 import Support from '../components/Support';
 import Setting from '../components/Setting';
 import Rule from '../components/Rule';
+import Navbar from '../components/Navbar';
+
 const index = () => {
+
   return (
     <>
-      <Navigation/>
+      {/* <Navigation/> */}
+      <Navbar/>
       <Page>
         <Layout>
           <Layout.Section>
@@ -32,8 +36,6 @@ const index = () => {
           </Layout.Section>
         </Layout>
       </Page>
-
-
     </>
   )
 }
