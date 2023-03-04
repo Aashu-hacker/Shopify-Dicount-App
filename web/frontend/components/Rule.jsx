@@ -3,7 +3,9 @@ import { Card, Select, TextField, Button } from '@shopify/polaris';
 import { Autocomplete, Icon } from '@shopify/polaris';
 import { SearchMinor } from '@shopify/polaris-icons';
 import { useState, useCallback, useMemo } from 'react';
+import {useNavigate} from '@shopify/app-bridge-react';
 const Rule = () => {
+    const navigate = useNavigate();
     const deselectedOptions = useMemo(
         () => [
             { value: 'rustic', label: 'Rustic' },
@@ -59,6 +61,10 @@ const Rule = () => {
             placeholder="Search"
         />
     );
+
+    const handleCancel=()=>{
+        navigate("/")
+    }
     return (
         <>
             <Card title="Online store dashboard" sectioned>
@@ -115,7 +121,7 @@ const Rule = () => {
             </Card>
             <div className='row mt-2'>
                 <div className='col-6'>
-                     <Button>Cancel</Button>
+                     <Button onClick={handleCancel}>Cancel</Button>
                 </div>
                 <div className='col-6 d-flex justify-content-end align-items-end'>
                      <Button primary>Save</Button>

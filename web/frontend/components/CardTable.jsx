@@ -1,13 +1,15 @@
 import { Card } from '@shopify/polaris';
 import React from 'react';
 import { ButtonGroup, Button,Icon} from '@shopify/polaris';
+import {useNavigate} from '@shopify/app-bridge-react';
 import {
     NoteMinor,
     ViewMinor,
     DeleteMinor
 } from '@shopify/polaris-icons';
-const CardTable = () => {
 
+const CardTable = () => {
+    const navigate = useNavigate();
     const offerArray = [
         {
             title: "",
@@ -17,6 +19,10 @@ const CardTable = () => {
             status: "",
         }
     ]
+
+    const handleOpenRule=()=>{
+        navigate("/rule")
+    }
     return (
         <>
             <div className='row mt-3 mb-3'>
@@ -50,7 +56,7 @@ const CardTable = () => {
                                             color="base"
                                         />
                                     </Button>
-                                    <Button>
+                                    <Button onClick={handleOpenRule}>
                                     <Icon
                                             source={NoteMinor}
                                             color="base"

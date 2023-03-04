@@ -28,7 +28,6 @@ const index = () => {
             <BannerExample/>
             <CardInfo/>
             <CardTable/>
-             <Rule/>
             <FooterLogo/>
           </Layout.Section>
         </Layout>
