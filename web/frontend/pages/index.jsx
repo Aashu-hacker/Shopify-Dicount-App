@@ -21,17 +21,14 @@ const index = () => {
 
   return (
     <>
-      {/* <Navigation/> */}
       <Navbar/>
       <Page>
         <Layout>
           <Layout.Section>
-            {/* <BannerExample/>
+            <BannerExample/>
             <CardInfo/>
-            <CardTable/> */}
-             {/* <Support/> */}
-             <Setting/>
-             {/* <Rule/> */}
+            <CardTable/>
+             <Rule/>
             <FooterLogo/>
           </Layout.Section>
         </Layout>

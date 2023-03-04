@@ -2,9 +2,11 @@ import React from 'react'
 import { useAppBridge } from '@shopify/app-bridge-react';
 import { Fullscreen } from '@shopify/app-bridge/actions';
 import { useState,useRef,useEffect } from 'react';
+import {useNavigate} from '@shopify/app-bridge-react';
 
 const Navbar = () => {
   const app = useAppBridge()
+  const navigate = useNavigate();
   const fullscreen = Fullscreen.create(app);
   const [isFullScreen, setIsFullScreen] = useState(false)
   const ref=useRef()
@@ -19,6 +21,14 @@ const Navbar = () => {
     ref.current.click()
   }
   
+  const closeCanvas=(link)=>{
+    ref.current.click();
+    if(link!=="tour"){
+      navigate(`/${link}`)
+    }else{
+         
+    }
+  }
   useEffect(() => {
     handleFullScreenEnter()
   }, [])
@@ -42,17 +52,17 @@ const Navbar = () => {
             <div class="offcanvas-body">
               <div className='row'>
                 <div className="col-12 mb-5">
-                  <a href='#' className='text-decoration-none text-white'> <p className='fs-5'>How to use?</p></a>
+                  <a href='#' className='text-decoration-none text-white' onClick={()=>closeCanvas("tour")}> <p className='fs-5'>How to use?</p></a>
                 </div>
                 <div className="col-12 mb-5">
-                  <a href='#' className='text-decoration-none text-white'> <p className='fs-5'>Dashboard</p></a>
+                  <a href='#' className='text-decoration-none text-white' onClick={()=>closeCanvas("")}> <p className='fs-5'>Dashboard</p></a>
                 </div>
                 <div className="col-12 mb-3">
-                  <a href='#' className='text-decoration-none text-white'> <p className='fs-5'>Settings</p> </a>
+                  <a href='#' className='text-decoration-none text-white' onClick={()=>closeCanvas("settings")}> <p className='fs-5'>Settings</p> </a>
                 </div>
                 <hr></hr>
                 <div className="col-12 mb-5">
-                  <a href='#' className='text-decoration-none text-white'> <p className='fs-5'>Support/FAQ</p></a>
+                  <a href='#' className='text-decoration-none text-white' onClick={()=>closeCanvas("supportFAQ")}> <p className='fs-5'>Support/FAQ</p></a>
                 </div>
                 <div className="col-12 mb-5">
                   <a href='#' className='text-decoration-none text-white' onClick={isFullScreen?handleFullScreenExit:handleFullScreenEnter}>
