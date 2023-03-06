@@ -1,8 +1,31 @@
 import {Card} from '@shopify/polaris';
 import React from 'react';
-
+import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch.js"
+import { useEffect } from 'react';
 const CardInfo = () => {
   const currentUser={charge:true}
+  const fetch=useAuthenticatedFetch()
+  const handleSubmit = async () => {
+        const response = await fetch("/api/shopInfo", {
+            method: "GET",
+        })
+        if (response.status >= 200 && response.status <= 299) {
+            const jsonData = await response.json()
+            console.log(jsonData)
+           
+        }
+        else {
+            const jsonData = await response.json()
+           
+        }
+}
+  
+useEffect(() => {
+  handleSubmit()
+}, [])
+
+
+
   return (
     <div className='mt-3'>
     {!currentUser.charge?
