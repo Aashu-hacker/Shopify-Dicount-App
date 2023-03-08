@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Select, TextField, Button } from '@shopify/polaris';
 import { Autocomplete, Icon } from '@shopify/polaris';
 import { SearchMinor } from '@shopify/polaris-icons';
-import { useState, useCallback, useMemo, useReducer } from 'react';
+import { useState, useCallback, useMemo, useReducer,useEffect } from 'react';
 import { useNavigate } from '@shopify/app-bridge-react';
 import { Provider, ResourcePicker } from '@shopify/app-bridge-react';
 import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch.js"
