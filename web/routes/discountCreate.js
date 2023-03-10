@@ -7,7 +7,7 @@ import moment from 'moment'
 router.post('/createCampaign', async (req, res) => {
     const { title, offerType, buy, get, discountValue,host,spend,endDate} = req.body;
     try {
-        const storeData=await shopModel.findOne({where:{store_name:host}})
+        const storeData=await shopModel.findOne({where:{store_name:"pritam-test-store-440.myshopify.com"}})
         const session = res.locals.shopify.session
         
         let query;
@@ -94,7 +94,7 @@ router.post('/createCampaign', async (req, res) => {
         console.log("datat",data.body)
         // console.log("dataaaa",data)
 
-        await offerModel.create({
+       await offerModel.create({
             store_client_id: storeData.dataValues.store_client_id,
             title: title.title,
             type: Number(offerType.offerType),
