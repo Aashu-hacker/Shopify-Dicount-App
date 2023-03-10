@@ -21,7 +21,7 @@ const CardTable = () => {
     ]
 
     const handleOpenRule=()=>{
-        navigate("/rule")
+        navigate("/campaign")
     }
     return (
         <>

@@ -14,17 +14,17 @@ import {
   import FooterLogo from '../components/FooterLogo';
   import Support from '../components/Support';
   import Setting from '../components/Setting';
-  import Rule from '../components/Rule';
+  import DiscountCampaign from '../components/DiscountCampaign';
   import Navbar from '../components/Navbar';
 
-const RuleEx = () => {
+const Campaign = () => {
   return (
     <>
     <Navbar/>
     <Page>
       <Layout>
         <Layout.Section>
-           <Rule/>
+           <DiscountCampaign/>
           <FooterLogo/>
         </Layout.Section>
       </Layout>
@@ -33,4 +33,4 @@ const RuleEx = () => {
   )
 }
 
-export default RuleEx 
+export default Campaign

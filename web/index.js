@@ -10,12 +10,18 @@ import GDPRWebhookHandlers from "./gdpr.js";
 
 import mysql from "mysql"
 import crypto from "crypto"
+import { Buffer } from "buffer";
+import  jwt  from "jsonwebtoken";
+import dotenv from "dotenv"
 import './models/db.js';
-import {shopModel} from "./models/shopModel.js"
-import {clientModel} from "./models/clientModel.js"
+import { shopModel } from "./models/shopModel.js"
+import { clientModel } from "./models/clientModel.js"
+import './models/relationalModels.js'
 
 
+import discountCreateRouter from "./routes/discountCreate.js"
 
+dotenv.config()
 const PORT = parseInt(process.env.BACKEND_PORT || process.env.PORT, 10);
 
 const STATIC_PATH =
@@ -52,9 +58,10 @@ const generateRandomString = () => {
   return id;
 }
 
-const activationHash = () => {
-  var id = crypto.randomBytes(20).toString('hex');
-  return id;
+const activationHash = (shopEmail) => {
+  var mykey = crypto.createCipher('aes-128-cbc', process.env.SECRET_KEY);
+  var mystr = mykey.update(shopEmail, 'utf8', 'hex')
+  return mystr += mykey.final('hex');
 }
 
 app.get("/api/shopInfo", async (req, res) => {
@@ -64,44 +71,44 @@ app.get("/api/shopInfo", async (req, res) => {
   });
   const shop = data[0]
   try {
-    const shopData = await shopModel.findOne({where: {store_name: shop.session.shop}});
+    const shopData = await shopModel.findOne({ where: { store_name: shop.session.shop } });
     if (shopData !== null) {
-        res.status(400).json({"error":"Shop is already present."})
+      res.status(400).json({ "error": "Shop is already present." })
     } else {
       await clientModel.create({
-        email:shop.email,
-        app_key:generateRandomString(),
-        user_activation_hash:activationHash(),
+        email: shop.email,
+        app_key: generateRandomString(),
+        user_activation_hash: activationHash(shop.email),
       })
-      const client_id_Obj= await clientModel.findOne({where:{email:shop.email}})
+      const client_id_Obj = await clientModel.findOne({ where: { email: shop.email } })
       await shopModel.create({
-        client_id: client_id_Obj.dataValues.client_id, 
-        store_name:shop.session.shop,
-        shop_name:shop.name,
-        money_format:shop.money_format,
-        token:shop.session.accessToken,
-        shop_plan:shop.plan_name,
-        charge_id:null 
+        client_id: client_id_Obj.dataValues.client_id,
+        store_name: shop.session.shop,
+        shop_name: shop.name,
+        money_format: shop.money_format,
+        token: shop.session.accessToken,
+        shop_plan: shop.plan_name,
+        charge_id: null
       })
 
-      const storeObj= await shopModel.findOne({where:{client_id:client_id_Obj.dataValues.client_id}})
+      const storeObj = await shopModel.findOne({ where: { client_id: client_id_Obj.dataValues.client_id } })
       await clientModel.update({ store_client_id: storeObj.dataValues.store_client_id }, {
         where: {
-          email:shop.email,
+          email: shop.email,
           store_client_id: null
         }
       });
-      res.status(200).json({"success":"Data saved successfully"})
+      res.status(200).json({ "success": "Data saved successfully" })
     }
   } catch (error) {
-       res.status(400).json({"error":"Something went wrong.."})
+    res.status(400).json({ "error": "Something went wrong.." })
   }
-
-
 
 })
 
+//custom route
 
+app.use("/api",discountCreateRouter)
 
 
 app.get("/api/products/count", async (_req, res) => {

@@ -1,7 +1,7 @@
 import { sequelize } from "./db.js"
 import { DataTypes } from "sequelize";
 
-export const offerModel = sequelize.define('offer', {
+export const getProductsModel = sequelize.define('gety_product', {
     id: {
     type: DataTypes.INTEGER,
     autoIncrement: true, 
@@ -12,28 +12,23 @@ export const offerModel = sequelize.define('offer', {
     type: DataTypes.INTEGER,
     allowNull: false, 
   },
-  title: {
-    type: DataTypes.TEXT, 
-  },
   type: {
-    type: DataTypes.BOOLEAN, 
+    type: DataTypes.INTEGER, 
     allowNull: false, 
   },
-  buyx: {
+  offer_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  product_id: {
     type: DataTypes.BIGINT,
   },
-  at: {
-    type: DataTypes.INTEGER,
+  variant_id: {
+    type: DataTypes.BIGINT,
+    allowNull: false,
   },
-  status: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: 1,
-    allowNull: false, 
-  },
-  created: {
-    type: DataTypes.DATEONLY,
-    defaultValue: DataTypes.NOW,
-    allowNull: true,  
+  product_price: {
+    allowNull: false,
   }
 }, {
     timestamps: false

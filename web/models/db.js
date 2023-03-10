@@ -1,7 +1,7 @@
 //connecting to db
 import { Sequelize } from "sequelize"
 
-export const sequelize = new Sequelize('freshnew', 'root', 'root', {
+export const sequelize = new Sequelize('activecartapplocal', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql'
   });
